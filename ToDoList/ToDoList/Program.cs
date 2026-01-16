@@ -24,6 +24,10 @@ class Program
                     break;
 
                 case "3":
+                    DeleteTask(tasks);
+                    break;
+
+                case "4":
                     return;
 
                 default:
@@ -42,7 +46,8 @@ class Program
         Console.WriteLine("==== ToDo Menu ====");
         Console.WriteLine("1. Add Task");
         Console.WriteLine("2. View Tasks");
-        Console.WriteLine("3. Exit");
+        Console.WriteLine("3. Delete Task");
+        Console.WriteLine("4. Exit");
         Console.Write("Choose an option: ");
 
     }
@@ -76,6 +81,38 @@ class Program
             {
                 Console.WriteLine($"{i + 1}.{tasks[i]}");// string interpolation
             }
+        }
+    }
+
+    static void DeleteTask(List<string> tasks)
+    {
+        if (tasks.Count == 0)
+        {
+            Console.WriteLine("No tasks to delete.");
+            return;
+        }
+
+        ViewTasks(tasks);
+        Console.Write("Enter task number to delete: ");
+        string input = Console.ReadLine();
+
+        if(int.TryParse(input, out int number))
+        {
+            int index = number - 1;
+
+            if (index >= 0 && index < tasks.Count)
+            {
+                tasks.RemoveAt(index);
+                Console.WriteLine("Task deleted.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid task number.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Please enter a valid number.");
         }
     }
 }
