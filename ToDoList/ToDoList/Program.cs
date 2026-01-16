@@ -22,8 +22,16 @@ class Program
                 case "1":
                     Console.Write("Enter task: ");
                     string task = Console.ReadLine();
-                    tasks.Add(task);
-                    Console.WriteLine("Task added");
+                    
+                    if (!string.IsNullOrWhiteSpace(task)) //input validation
+                    {
+                        tasks.Add(task);
+                        Console.WriteLine("Task added.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Task cannot be empty.");
+                    }
                     break;
 
                 case "2":
